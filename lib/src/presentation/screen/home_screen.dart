@@ -58,36 +58,3 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
-
-
-//  CustomRefreshIndicator(
-//             leadingGlowVisible: true,
-//             offsetToArmed: 200.0,
-//             trailingGlowVisible: true,
-//             builder: customIndicator.builder,
-//             onRefresh: () => Future.delayed(const Duration(seconds: 2)),
-//             child: SingleChildScrollView(
-//               physics: const AlwaysScrollableScrollPhysics(),
-//               child: Container(
-//                 height:
-//                     Application.sizes.height - Application.sizes.appBar - 270,
-//                 color: Colors.white,
-//                 child: SizedBox.expand(
-//                   child: Column(
-//                     children: [
-//                       Container(
-//                         width: 100,
-//                         height: 100,
-//                         decoration: BoxDecoration(
-//                           image: DecorationImage(
-//                             fit: BoxFit.cover,
-//                             image: AssetImage("assets/icons/icon_c.png"),
-//                           ),
-//                         ),
-//                       )
-//                     ],
-//                   ),
-//                 ),
-//               ),
-//             ),
-//           ),

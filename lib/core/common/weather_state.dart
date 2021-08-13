@@ -13,6 +13,10 @@ enum WeatherState {
 }
 
 extension WeatherStateExtension on WeatherState {
+  String get pathAsset {
+    return "assets/icons/icon_${this.abb}.png";
+  }
+
   String get abb {
     switch (this) {
       case WeatherState.c:

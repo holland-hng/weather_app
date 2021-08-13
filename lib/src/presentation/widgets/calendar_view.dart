@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/core/common/day.dart';
+import 'package:weather_app/core/common/format_date.dart';
 import 'package:weather_app/core/tools/application_context.dart';
 import 'package:weather_app/src/domain/events/home_event.dart';
 import 'package:weather_app/src/presentation/bloc/home_bloc.dart';
@@ -63,11 +64,13 @@ class CalendartView extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text("${_date.weekday.getWeekDayString()}"),
+                                Text(
+                                    "${_date.isSameDate(DateTime.now()) ? "Today" : _date.weekday.getWeekDayString()}"),
                                 SizedBox(
                                   height: 5,
                                 ),
-                                Text("${_date.month}/${_date.day}"),
+                                Text(
+                                    "${FormatDate.format(_date.month.toString())}/${FormatDate.format(_date.day.toString())}"),
                               ],
                             ),
                           ),

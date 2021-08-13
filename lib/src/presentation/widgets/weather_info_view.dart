@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weather_app/core/common/weather_state.dart';
 import 'package:weather_app/core/tools/application_context.dart';
 import 'package:weather_app/src/presentation/bloc/home_bloc.dart';
 
@@ -56,7 +57,10 @@ class _WeatherInfoViewState extends State<WeatherInfoView> {
                       decoration: BoxDecoration(
                         image: DecorationImage(
                           fit: BoxFit.cover,
-                          image: AssetImage('assets/icons/icon_hr.png'),
+                          image: AssetImage(state.weather?.weatherStateAbbr
+                                  .getWeatherState()
+                                  .pathAsset ??
+                              ""),
                         ),
                       ),
                     ),
