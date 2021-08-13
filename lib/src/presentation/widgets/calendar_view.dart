@@ -61,7 +61,7 @@ class CalendartView extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text("${_date.weekday} °c"),
+                                Text("${_date.weekday}"),
                                 SizedBox(
                                   height: 5,
                                 ),

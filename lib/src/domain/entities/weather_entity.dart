@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:hive/hive.dart';
+import 'package:weather_app/core/common/day.dart';
 part 'weather_entity.g.dart';
 
 @HiveType(typeId: WeatherEntity.typeId)
@@ -50,6 +51,22 @@ class WeatherEntity extends Equatable {
     required this.visibility,
     required this.predictability,
   });
+
+  String get dateString {
+    try {
+      var _parsedDate = DateTime.parse(this.applicableDate);
+      String _result = _parsedDate.weekday.getWeekDayString() +
+          " " +
+          _parsedDate.month.getMonthString() +
+          " " +
+          _parsedDate.day.toString() +
+          ", " +
+          _parsedDate.year.toString();
+      return _result;
+    } catch (e) {
+      return "";
+    }
+  }
 
   @override
   List<Object?> get props => [applicableDate];

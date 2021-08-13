@@ -10,4 +10,5 @@ class AppColors {
   Color semiDarkBlue = Color.fromARGB(255, 48, 83, 140);
   Color lightBlue = Color.fromARGB(255, 84, 173, 236);
   Color mediumBlue = Color.fromARGB(255, 63, 120, 179);
+  Color purpleBlue = Color.fromARGB(255, 81, 79, 211);
 }
