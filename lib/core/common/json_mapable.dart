@@ -1,0 +1,1 @@
+abstract class JsonMapable<T> {}
