@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           fontFamily: 'Quicksand',
-          primaryColor: Colors.white,
+          primaryColor: Colors.black,
           brightness: Brightness.dark,
           canvasColor: Colors.transparent,
           primaryColorBrightness: Brightness.dark,

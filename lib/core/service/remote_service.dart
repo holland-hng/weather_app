@@ -7,8 +7,8 @@ class RemoteService {
   RemoteService() {
     var options = BaseOptions(
       baseUrl: 'https://www.metaweather.com/api/',
-      connectTimeout: 8000,
-      receiveTimeout: 3000,
+      connectTimeout: 15000,
+      receiveTimeout: 5000,
     );
     _dio = Dio(options);
   }

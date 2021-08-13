@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:preload_page_view/preload_page_view.dart';
-import 'package:weather_app/core/tools/application_context.dart';
 import 'package:weather_app/src/domain/events/home_event.dart';
 import 'package:weather_app/src/presentation/bloc/home_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -20,26 +19,16 @@ class _WeatherPageViewState extends State<WeatherPageView> {
 
   @override
   Widget build(BuildContext context) {
-    return SliverToBoxAdapter(
-      child: Container(
-        height: Application.sizes.height -
-            Application.sizes.appBar -
-            45 -
-            225 / 414 * Application.sizes.width,
-        child: PreloadPageView.builder(
-          itemCount: 3,
-          itemBuilder: (context, index) {
-            return WeatherInfoView(weekType: index.getWeekType());
-          },
-          onPageChanged: (int index) {
-            context
-                .read<HomeBloc>()
-                .add(UserSwipeWeekEvent(index.getWeekType()));
-          },
-          preloadPagesCount: 0,
-          controller: _controller,
-        ),
-      ),
+    return PreloadPageView.builder(
+      itemCount: 3,
+      itemBuilder: (context, index) {
+        return WeatherInfoView(weekType: index.getWeekType());
+      },
+      onPageChanged: (int index) {
+        context.read<HomeBloc>().add(UserSwipeWeekEvent(index.getWeekType()));
+      },
+      preloadPagesCount: 0,
+      controller: _controller,
     );
   }
 }

@@ -1,10 +1,6 @@
-import 'package:custom_refresh_indicator/custom_refresh_indicator.dart';
 import 'package:flutter/material.dart';
-import 'package:preload_page_view/preload_page_view.dart';
-import 'package:weather_app/core/tools/app_circle_loadting.dart';
-import 'package:weather_app/core/tools/app_size.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:weather_app/core/tools/application_context.dart';
-import 'package:weather_app/core/widgets/indicator.dart';
 import 'package:weather_app/src/domain/events/home_event.dart';
 import 'package:weather_app/src/presentation/bloc/home_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -20,12 +16,12 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final CustomIndicatorConfig customIndicator = simpleIndicator;
+  RefreshController _refreshController =
+      RefreshController(initialRefresh: false);
 
   @override
   void initState() {
     context.read<HomeBloc>().add(FetchDataEvent());
-    //_WeatherPageView = WeatherPageView();
     super.initState();
   }
 
@@ -34,13 +30,43 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: CustomScrollView(
+        physics: NeverScrollableScrollPhysics(),
         slivers: [
           SliverAppBar(
             backgroundColor: Application.colors.darkBlue,
             flexibleSpace: CalendartView(),
             pinned: true,
           ),
-          WeatherPageView()
+          SliverToBoxAdapter(
+            child: Container(
+              height: Application.sizes.height -
+                  Application.sizes.appBar -
+                  45 -
+                  225 / 414 * Application.sizes.width,
+              child: BlocBuilder<HomeBloc, HomeState>(
+                builder: (context, state) {
+                  return SmartRefresher(
+                    primary: false,
+                    controller: _refreshController,
+                    enablePullDown: state.isLoading == false,
+                    onRefresh: _onRefresh,
+                    header: MaterialClassicHeader(
+                      color: Application.colors.darkBlue,
+                    ),
+                    child: WeatherPageView(),
+                  );
+                },
+                buildWhen: (preState, state) {
+                  if (preState.isRefreshing != state.isRefreshing &&
+                      state.isRefreshing == false) {
+                    _refreshController.refreshCompleted();
+                  }
+                  return preState.isLoading != state.isLoading ||
+                      preState.isRefreshing != state.isRefreshing;
+                },
+              ),
+            ),
+          ),
         ],
       ),
       bottomNavigationBar: Container(
@@ -56,5 +82,9 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
     );
+  }
+
+  void _onRefresh() async {
+    context.read<HomeBloc>().add(RefreshDataEvent());
   }
 }

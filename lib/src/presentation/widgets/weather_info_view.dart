@@ -19,6 +19,9 @@ class _WeatherInfoViewState extends State<WeatherInfoView> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<HomeBloc, HomeState>(
+      buildWhen: (preState, state) {
+        return !(state.isRefreshing ?? true);
+      },
       builder: (context, state) {
         if (state.weekType != weekType) {
           return Center(

@@ -42,6 +42,9 @@ class _ProgressViewState extends State<ProgressView> {
   Widget build(BuildContext context) {
     double _widthContainer = (Application.sizes.width - 45 * 2 + 15) / 2;
     return BlocConsumer<HomeBloc, HomeState>(
+        buildWhen: (preState, state) {
+          return !(state.isRefreshing ?? true);
+        },
         builder: (contetx, state) {
           var _value = 0;
           switch (type) {

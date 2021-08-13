@@ -23,12 +23,22 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       case HomeEventType.fetchData:
         yield* _handleFetchData(event as FetchDataEvent);
         break;
+      case HomeEventType.refreshData:
+        yield* _handleRefresh(event as RefreshDataEvent);
+        break;
       default:
     }
   }
 
+  Stream<HomeState> _handleRefresh(RefreshDataEvent event) async* {
+    yield state.copyWith(
+      isRefreshing: true,
+    );
+    add(UserSelectDateEvent(index: state.index ?? 0));
+    return;
+  }
+
   Stream<HomeState> _handleSwipeWeek(UserSwipeWeekEvent event) async* {
-    //int _weekValue = event.weekType.value;
     yield state.copyWith(weekType: event.weekType);
     add(UserSelectDateEvent(index: state.index ?? 0));
     return;
@@ -55,16 +65,27 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     yield state.copyWith(
       date: _date,
       index: event.index,
+      isLoading: true,
       weather: null,
       failure: null,
     );
     final _result = await _repository.getWeather(_date);
     yield _result.when(
       (error) {
-        return state.copyWith(weather: null, failure: error);
+        return state.copyWith(
+          weather: null,
+          failure: error,
+          isLoading: false,
+          isRefreshing: false,
+        );
       },
       (weather) {
-        return state.copyWith(weather: weather, failure: null);
+        return state.copyWith(
+          weather: weather,
+          failure: null,
+          isLoading: false,
+          isRefreshing: false,
+        );
       },
     );
   }
@@ -111,8 +132,12 @@ class HomeState extends Equatable {
   final int? index;
   final WeekType? weekType;
   final List<DateTime>? calendar;
+  final bool? isLoading;
+  final bool? isRefreshing;
 
   HomeState({
+    this.isLoading,
+    this.isRefreshing,
     this.date,
     this.index = 0,
     this.weekType = WeekType.current,
@@ -128,6 +153,8 @@ class HomeState extends Equatable {
     WeekType? weekType,
     int? index,
     List<DateTime>? calendar,
+    bool? isLoading,
+    bool? isRefreshing,
   }) {
     return HomeState(
       weather: weather,
@@ -136,6 +163,8 @@ class HomeState extends Equatable {
       index: index ?? this.index,
       weekType: weekType ?? this.weekType,
       calendar: calendar ?? this.calendar,
+      isLoading: isLoading ?? this.isLoading,
+      isRefreshing: isRefreshing ?? this.isRefreshing,
     );
   }
 

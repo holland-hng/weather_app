@@ -4,6 +4,7 @@ enum HomeEventType {
   swipeWeek,
   selectDate,
   fetchData,
+  refreshData,
 }
 
 class HomeEvent {
@@ -25,4 +26,8 @@ class UserSelectDateEvent extends HomeEvent {
 
 class FetchDataEvent extends HomeEvent {
   FetchDataEvent() : super(HomeEventType.fetchData);
+}
+
+class RefreshDataEvent extends HomeEvent {
+  RefreshDataEvent() : super(HomeEventType.refreshData);
 }
