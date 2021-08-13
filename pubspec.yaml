@@ -13,7 +13,7 @@ dependencies:
 
   cupertino_icons: ^1.0.2
 
-  #service
+  #remote service
   connectivity: ^3.0.6
   dio: ^4.0.0
   json_annotation:
@@ -24,8 +24,9 @@ dependencies:
   equatable: ^2.0.3
   flutter_bloc:
   multiple_result: ^1.0.4
+  preload_page_view: ^0.1.6
 
-  #data
+  #local data
   hive: ^2.0.4
   hive_flutter:
 

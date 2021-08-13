@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
+import 'package:weather_app/core/error/exceptions.dart';
 import 'package:weather_app/core/service/remote_service.dart';
 import 'package:weather_app/src/data/responses/weather_response.dart';
 
@@ -17,13 +18,19 @@ class WeatherRemoteDataSourceImpl implements WeatherRemoteDataSource {
   WeatherRemoteDataSourceImpl(this._service);
   @override
   Future<List<WeatherResponse>> getWeathers(DateTime date) async {
-    Response _reponse = await _service.dio.get("/location/1252431/2021/07/31");
-    List<WeatherResponse> _weathers = [];
-    for (int i = 0; i < _reponse.data.length; i++) {
-      var _jsonData = _reponse.data[i];
-      var _weather = WeatherResponse.fromJson(_jsonData);
-      _weathers.add(_weather);
+    Response _reponse = await _service.dio
+        .get("/location/1252431/${date.year}/${date.month}/${date.day}");
+    if (_reponse.statusCode == 200 && _reponse.data.length != 0) {
+      //We can use Generic for parse data from JSON
+      List<WeatherResponse> _weathers = [];
+      for (int i = 0; i < _reponse.data.length; i++) {
+        var _jsonData = _reponse.data[i];
+        var _weather = WeatherResponse.fromJson(_jsonData);
+        _weathers.add(_weather);
+      }
+      return _weathers;
+    } else {
+      throw ServerException();
     }
-    return _weathers;
   }
 }

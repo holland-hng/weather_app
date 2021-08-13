@@ -14,9 +14,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   @override
   Stream<HomeState> mapEventToState(HomeEvent event) async* {
     switch (event.type) {
-      case HomeEventType.swipeLastWeek:
-        break;
-      case HomeEventType.swipeNextWeek:
+      case HomeEventType.swipeWeek:
+        yield* _handleSwipeWeek(event as UserSwipeWeekEvent);
         break;
       case HomeEventType.selectDate:
         yield* _handleSelectDate(event as UserSelectDateEvent);
@@ -26,6 +25,13 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         break;
       default:
     }
+  }
+
+  Stream<HomeState> _handleSwipeWeek(UserSwipeWeekEvent event) async* {
+    //int _weekValue = event.weekType.value;
+    yield state.copyWith(weekType: event.weekType);
+    add(UserSelectDateEvent(index: state.index ?? 0));
+    return;
   }
 
   Stream<HomeState> _handleFetchData(FetchDataEvent event) async* {
@@ -81,6 +87,19 @@ extension WeekTypeExtension on WeekType {
         return 2;
       default:
         return 0;
+    }
+  }
+}
+
+extension WeekTypeFromIntExtion on int {
+  WeekType getWeekType() {
+    switch (this) {
+      case 0:
+        return WeekType.last;
+      case 1:
+        return WeekType.current;
+      default:
+        return WeekType.next;
     }
   }
 }

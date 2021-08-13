@@ -1,6 +1,7 @@
+import 'package:weather_app/src/presentation/bloc/home_bloc.dart';
+
 enum HomeEventType {
-  swipeNextWeek,
-  swipeLastWeek,
+  swipeWeek,
   selectDate,
   fetchData,
 }
@@ -10,12 +11,9 @@ class HomeEvent {
   HomeEvent(this.type);
 }
 
-class UserSwipeNextWeekEvent extends HomeEvent {
-  UserSwipeNextWeekEvent() : super(HomeEventType.swipeNextWeek);
-}
-
-class UserSwipeLastWeekEvent extends HomeEvent {
-  UserSwipeLastWeekEvent() : super(HomeEventType.swipeLastWeek);
+class UserSwipeWeekEvent extends HomeEvent {
+  final WeekType weekType;
+  UserSwipeWeekEvent(this.weekType) : super(HomeEventType.swipeWeek);
 }
 
 class UserSelectDateEvent extends HomeEvent {

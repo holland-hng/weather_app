@@ -1,5 +1,6 @@
 import 'package:custom_refresh_indicator/custom_refresh_indicator.dart';
 import 'package:flutter/material.dart';
+import 'package:preload_page_view/preload_page_view.dart';
 import 'package:weather_app/core/tools/app_circle_loadting.dart';
 import 'package:weather_app/core/tools/app_size.dart';
 import 'package:weather_app/core/tools/application_context.dart';
@@ -9,7 +10,7 @@ import 'package:weather_app/src/presentation/bloc/home_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/src/presentation/widgets/calendar_view.dart';
 import 'package:weather_app/src/presentation/widgets/humidity_view.dart';
-import 'package:weather_app/src/presentation/widgets/weahter_base_info_view.dart';
+import 'package:weather_app/src/presentation/widgets/weahter_page_view.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -24,7 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     context.read<HomeBloc>().add(FetchDataEvent());
-
+    //_WeatherPageView = WeatherPageView();
     super.initState();
   }
 
@@ -39,7 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
             flexibleSpace: CalendartView(),
             pinned: true,
           ),
-          WeatherBaseInfoView()
+          WeatherPageView()
         ],
       ),
       bottomNavigationBar: Container(

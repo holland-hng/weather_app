@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weather_app/core/common/day.dart';
 import 'package:weather_app/core/tools/application_context.dart';
 import 'package:weather_app/src/domain/events/home_event.dart';
 import 'package:weather_app/src/presentation/bloc/home_bloc.dart';
@@ -43,6 +44,7 @@ class CalendartView extends StatelessWidget {
                 BlocBuilder<HomeBloc, HomeState>(
                   builder: (context, state) {
                     return ListView.builder(
+                      physics: NeverScrollableScrollPhysics(),
                       controller: _scrollController,
                       itemCount: state.calendar?.length ?? 0,
                       scrollDirection: Axis.horizontal,
@@ -61,7 +63,7 @@ class CalendartView extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text("${_date.weekday}"),
+                                Text("${_date.weekday.getWeekDayString()}"),
                                 SizedBox(
                                   height: 5,
                                 ),
@@ -87,10 +89,11 @@ class CalendartView extends StatelessWidget {
                           _offset = Application.sizes.width * 2;
                           break;
                         default:
-                          _scrollController.animateTo(_offset,
-                              duration: Duration(milliseconds: 300),
-                              curve: Curves.linear);
+                          break;
                       }
+                      _scrollController.animateTo(_offset,
+                          duration: Duration(milliseconds: 300),
+                          curve: Curves.linear);
                     }
                     return preState.calendar != state.calendar;
                   },
