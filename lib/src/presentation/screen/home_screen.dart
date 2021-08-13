@@ -9,7 +9,7 @@ import 'package:weather_app/src/domain/events/home_event.dart';
 import 'package:weather_app/src/presentation/bloc/home_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/src/presentation/widgets/calendar_view.dart';
-import 'package:weather_app/src/presentation/widgets/humidity_view.dart';
+import 'package:weather_app/src/presentation/widgets/progress_view.dart';
 import 'package:weather_app/src/presentation/widgets/weahter_page_view.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -49,9 +49,9 @@ class _HomeScreenState extends State<HomeScreen> {
         padding: EdgeInsets.only(left: 45, right: 45, bottom: 45),
         child: Row(
           children: [
-            HumidityView(),
+            ProgressView(type: ProgressType.humidity),
             SizedBox(width: 15),
-            HumidityView(),
+            ProgressView(type: ProgressType.predictability),
           ],
         ),
       ),
