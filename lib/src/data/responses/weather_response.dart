@@ -4,7 +4,7 @@ part 'weather_response.g.dart';
 
 @JsonSerializable(fieldRename: FieldRename.snake)
 class WeatherResponse implements JsonMapable<WeatherResponse> {
-  final String id;
+  final int id;
   @JsonKey(name: "weather_state_name", defaultValue: "")
   final String weatherStateName;
   @JsonKey(name: "weather_state_abbr", defaultValue: "")

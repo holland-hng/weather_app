@@ -22,22 +22,24 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         yield* _handleSelectDate(event as UserSelectDateEvent);
         break;
       case HomeEventType.fetchData:
-        yield _handleFetchData(event as FetchDataEvent);
+        yield* _handleFetchData(event as FetchDataEvent);
         break;
       default:
     }
   }
 
-  HomeState _handleFetchData(FetchDataEvent event) {
+  Stream<HomeState> _handleFetchData(FetchDataEvent event) async* {
     DateTime _now = DateTime.now();
-    //add(UserSelectDateEvent(date: _now, index: 0));
+
     DateTime _start = _now.subtract(Duration(days: 7));
     List<DateTime> _calendar = [];
     for (int i = 0; i < 21; i++) {
       final _date = _start.add(Duration(days: i));
       _calendar.add(_date);
     }
-    return state.copyWith(calendar: _calendar);
+    yield state.copyWith(calendar: _calendar);
+    add(UserSelectDateEvent(index: 0));
+    return;
   }
 
   Stream<HomeState> _handleSelectDate(UserSelectDateEvent event) async* {

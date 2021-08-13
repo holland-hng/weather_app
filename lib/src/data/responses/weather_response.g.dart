@@ -8,7 +8,7 @@ part of 'weather_response.dart';
 
 WeatherResponse _$WeatherResponseFromJson(Map<String, dynamic> json) {
   return WeatherResponse(
-    id: json['id'] as String,
+    id: json['id'] as int,
     weatherStateName: json['weather_state_name'] as String? ?? '',
     weatherStateAbbr: json['weather_state_abbr'] as String? ?? '',
     windDirectionCompass: json['wind_direction_compass'] as String? ?? '',
