@@ -51,8 +51,8 @@ class _WeatherInfoViewState extends State<WeatherInfoView> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(
-                      width: 100,
-                      height: 100,
+                      width: Application.sizes.width / 5,
+                      height: Application.sizes.width / 5,
                       decoration: BoxDecoration(
                         image: DecorationImage(
                           fit: BoxFit.cover,
@@ -68,15 +68,15 @@ class _WeatherInfoViewState extends State<WeatherInfoView> {
                           "${_weather?.theTemp.floor() ?? 0.0}",
                           style: TextStyle(
                             color: Application.colors.darkBlue,
-                            fontSize: 100,
-                            fontWeight: FontWeight.w600,
+                            fontSize: 70,
+                            fontWeight: FontWeight.w500,
                           ),
                         ),
                         Text(
                           "°c",
                           style: TextStyle(
                             color: Application.colors.darkBlue,
-                            fontSize: 100,
+                            fontSize: 70,
                             fontWeight: FontWeight.w400,
                           ),
                         ),
@@ -86,7 +86,7 @@ class _WeatherInfoViewState extends State<WeatherInfoView> {
                       _weather?.weatherStateName ?? "",
                       style: TextStyle(
                         color: Application.colors.lightBlue,
-                        fontSize: 50,
+                        fontSize: 40,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
@@ -97,7 +97,7 @@ class _WeatherInfoViewState extends State<WeatherInfoView> {
                       _weather?.dateString ?? "",
                       style: TextStyle(
                         color: Colors.black,
-                        fontSize: 30,
+                        fontSize: 20,
                         fontWeight: FontWeight.w500,
                       ),
                     ),

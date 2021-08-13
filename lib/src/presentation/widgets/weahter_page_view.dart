@@ -22,7 +22,10 @@ class _WeatherPageViewState extends State<WeatherPageView> {
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
       child: Container(
-        height: Application.sizes.height - Application.sizes.appBar - 270,
+        height: Application.sizes.height -
+            Application.sizes.appBar -
+            45 -
+            225 / 414 * Application.sizes.width,
         child: PreloadPageView.builder(
           itemCount: 3,
           itemBuilder: (context, index) {

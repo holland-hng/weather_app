@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/core/tools/application_context.dart';
+import 'package:weather_app/src/presentation/bloc/home_bloc.dart';
 
 enum ProgressType {
   humidity,
@@ -39,114 +41,128 @@ class _ProgressViewState extends State<ProgressView> {
   @override
   Widget build(BuildContext context) {
     double _widthContainer = (Application.sizes.width - 45 * 2 + 15) / 2;
-    return Expanded(
-      child: Container(
-        height: 225,
-        decoration: BoxDecoration(
-          color: _color,
-          borderRadius: BorderRadius.circular(
-            _widthContainer / 2,
-          ),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SizedBox(
-              height: 10,
-            ),
-            Container(
-              width: _widthContainer - 33 * 2,
-              height: _widthContainer - 33 * 2,
+    return BlocConsumer<HomeBloc, HomeState>(
+        builder: (contetx, state) {
+          var _value = 0;
+          switch (type) {
+            case ProgressType.humidity:
+              _value = state.weather?.humidity ?? 0;
+              break;
+            case ProgressType.predictability:
+              _value = state.weather?.predictability ?? 0;
+              break;
+            default:
+          }
+          return Expanded(
+            child: Container(
+              height: 225,
               decoration: BoxDecoration(
-                  color: Colors.transparent,
-                  borderRadius:
-                      BorderRadius.circular((_widthContainer - 33 * 2) / 2)),
-              child: Stack(
+                color: _color,
+                borderRadius: BorderRadius.circular(
+                  _widthContainer / 2,
+                ),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SizedBox(
+                    height: 10,
+                  ),
+                  Container(
                     width: _widthContainer - 33 * 2,
                     height: _widthContainer - 33 * 2,
-                    child: RotationTransition(
-                      turns: AlwaysStoppedAnimation(0.625),
-                      child: CircularProgressIndicator(
-                        color: Colors.grey.shade300,
-                        strokeWidth: 4,
-                        value: 0.75,
-                        backgroundColor: Colors.transparent,
-                      ),
+                    decoration: BoxDecoration(
+                        color: Colors.transparent,
+                        borderRadius: BorderRadius.circular(
+                            (_widthContainer - 33 * 2) / 2)),
+                    child: Stack(
+                      children: [
+                        SizedBox(
+                          width: _widthContainer - 33 * 2,
+                          height: _widthContainer - 33 * 2,
+                          child: RotationTransition(
+                            turns: AlwaysStoppedAnimation(0.625),
+                            child: CircularProgressIndicator(
+                              color: Colors.grey.shade300,
+                              strokeWidth: 4,
+                              value: 0.75,
+                              backgroundColor: Colors.transparent,
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          width: _widthContainer - 33 * 2,
+                          height: _widthContainer - 33 * 2,
+                          child: RotationTransition(
+                            turns: AlwaysStoppedAnimation(0.625),
+                            child: CircularProgressIndicator(
+                              color: Colors.white,
+                              strokeWidth: 8,
+                              value: 0.75 * _value / 100,
+                              backgroundColor: Colors.transparent,
+                            ),
+                          ),
+                        ),
+                        SizedBox.expand(
+                          child: Center(
+                            child: Container(
+                              width: _widthContainer - 45 * 2,
+                              height: _widthContainer - 45 * 2,
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(
+                                      (_widthContainer - 45 * 2) / 2)),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                   SizedBox(
-                    width: _widthContainer - 33 * 2,
-                    height: _widthContainer - 33 * 2,
-                    child: RotationTransition(
-                      turns: AlwaysStoppedAnimation(0.625),
-                      child: CircularProgressIndicator(
-                        color: Colors.white,
-                        strokeWidth: 8,
-                        value: 0.5,
-                        backgroundColor: Colors.transparent,
+                    height: 5,
+                  ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "$_value",
+                        style: TextStyle(
+                          fontSize: 28,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 3),
+                        child: Text(
+                          "%",
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 3,
+                  ),
+                  Text(
+                    _title,
+                    style: TextStyle(
+                      fontSize: 15,
                     ),
                   ),
-                  SizedBox.expand(
-                    child: Center(
-                      child: Container(
-                        width: _widthContainer - 45 * 2,
-                        height: _widthContainer - 45 * 2,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(
-                                (_widthContainer - 45 * 2) / 2)),
-                      ),
-                    ),
+                  SizedBox(
+                    height: 15,
                   ),
                 ],
               ),
             ),
-            SizedBox(
-              height: 5,
-            ),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  "45",
-                  style: TextStyle(
-                    fontSize: 28,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 3),
-                  child: Text(
-                    "%",
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 3,
-            ),
-            Text(
-              _title,
-              style: TextStyle(
-                fontSize: 15,
-              ),
-            ),
-            SizedBox(
-              height: 15,
-            ),
-          ],
-        ),
-      ),
-      flex: 1,
-    );
+            flex: 1,
+          );
+        },
+        listener: (contetx, state) {});
   }
 }

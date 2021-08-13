@@ -44,9 +44,9 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
       bottomNavigationBar: Container(
-        height: 270,
+        height: 225 / 414 * Application.sizes.width,
         color: Colors.white,
-        padding: EdgeInsets.only(left: 45, right: 45, bottom: 45),
+        margin: EdgeInsets.only(left: 45, right: 45, bottom: 45),
         child: Row(
           children: [
             ProgressView(type: ProgressType.humidity),
