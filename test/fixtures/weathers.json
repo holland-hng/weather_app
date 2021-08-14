@@ -1,0 +1,18 @@
+
+    {
+        "id":6288717808402432,
+        "weather_state_name":"Heavy Rain",
+        "weather_state_abbr":"hr",
+        "wind_direction_compass":"WSW",
+        "created":"2021-07-31T16:36:46.278124Z",
+        "applicable_date":"2021-07-31",
+        "min_temp":24.84,
+        "max_temp":32.305,
+        "the_temp":31.555,
+        "wind_speed":8.240254436138287,
+        "wind_direction":251.8202080068491,
+        "air_pressure":1008.5,
+        "humidity":71,
+        "visibility":9.32025719796389,
+        "predictability":77
+    }

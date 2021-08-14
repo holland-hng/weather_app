@@ -1,10 +1,12 @@
+import 'package:injectable/injectable.dart';
 import 'package:weather_app/core/common/weather_state.dart';
 import 'package:weather_app/src/data/responses/weather_response.dart';
 import 'package:weather_app/src/domain/entities/weather_entity.dart';
 
 // build list WeatherResponse -> WeatherEntity
+@singleton
 class WeatherBuilder {
-  static WeatherEntity buildEntity(List<WeatherResponse> weathers) {
+  WeatherEntity buildEntity(List<WeatherResponse> weathers) {
     Map<String, int> _couts = Map<String, int>();
     double _totalTemp = 0;
     double _totalHumidity = 0;

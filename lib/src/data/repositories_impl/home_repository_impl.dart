@@ -15,9 +15,10 @@ class HomeRepositoryImpl implements HomeRepository {
   final WeatherRemoteDataSource _remoteDataSource;
   final WeatherLocalDataSource _localDataSource;
   final NetworkInfo _networkInfo;
+  final WeatherBuilder _weatherBuilder;
 
-  HomeRepositoryImpl(
-      this._remoteDataSource, this._networkInfo, this._localDataSource);
+  HomeRepositoryImpl(this._remoteDataSource, this._networkInfo,
+      this._localDataSource, this._weatherBuilder);
 
   @override
   Future<Result<Failure, WeatherEntity>> getWeather(DateTime date) async {
@@ -26,7 +27,7 @@ class HomeRepositoryImpl implements HomeRepository {
         //get data from remote api
         List<WeatherResponse> _weathers =
             await _remoteDataSource.getWeathers(date);
-        WeatherEntity _entity = WeatherBuilder.buildEntity(_weathers);
+        WeatherEntity _entity = _weatherBuilder.buildEntity(_weathers);
         _localDataSource.cacheWeather(_entity);
         return Success(_entity);
       } on ServerException {
