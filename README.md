@@ -7,7 +7,8 @@
         ✅  Show Today at the beginning of the week (index = 0) and next 6 days.
         ✅  Initially, today is highlighted by gradient color. When users select another day, that
             day is highlighted instead.
-        ✅  Users could swipe the calendar left or right to view weather data of the last week or next week. We only show one next week and one last week.
+        ✅  Users could swipe the calendar left or right to view weather data of the last week or
+            next week. We only show one next week and one last week.
         ✅  When users swipe to next week or last week, the current index of the highlighted day
     ✅  Display Weather State icon
         ✅  Depending on the Weather States table, you can display the weather icon
