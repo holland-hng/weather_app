@@ -2,7 +2,7 @@
 
 ## VIDEO DEMO
 
-https://user-images.githubusercontent.com/40235483/129461186-b955feaa-a49c-4106-8342-b214db6ca38a.mp4
+https://user-images.githubusercontent.com/40235483/129461297-218df64d-4ae9-4f90-8533-2434c5e03e93.mp4
 
 ## SPEC
  
