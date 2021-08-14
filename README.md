@@ -1,7 +1,7 @@
 # weather_app
 
 ## VIDEO DEMO
-    https://youtu.be/Srd-Q6o6KOs
+    [![IMAGE ALT TEXT](http://img.youtube.com/vi/Srd-Q6o6KOs/0.jpg)](http://www.youtube.com/watch?v=Srd-Q6o6KOs "Weather app")
 
 ## SPEC
  
