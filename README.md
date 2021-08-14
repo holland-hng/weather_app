@@ -1,8 +1,8 @@
 # weather_app
 
 ## Work progress
-
-- [:heavy_check_mark:] 1. Get weather data from API.
+ 
+- ✅ 1. Get weather data from API.
 - [x] 2. Spec about the calendar:
     - [x] Show Today at the beginning of the week (index = 0) and next 6 days.
 - [x] Earth (Orbit/Moon)
