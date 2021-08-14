@@ -27,7 +27,7 @@ class _WeatherPageViewState extends State<WeatherPageView> {
       onPageChanged: (int index) {
         context.read<HomeBloc>().add(UserSwipeWeekEvent(index.getWeekType()));
       },
-      preloadPagesCount: 0,
+      preloadPagesCount: 3,
       controller: _controller,
     );
   }

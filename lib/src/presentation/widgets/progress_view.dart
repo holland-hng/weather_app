@@ -43,6 +43,7 @@ class _ProgressViewState extends State<ProgressView> {
     double _widthContainer = (Application.sizes.width - 45 * 2 + 15) / 2;
     return BlocConsumer<HomeBloc, HomeState>(
         buildWhen: (preState, state) {
+          //block rebuild ui when start refresh -> just only render when reload completed
           return !(state.isRefreshing ?? true);
         },
         builder: (contetx, state) {

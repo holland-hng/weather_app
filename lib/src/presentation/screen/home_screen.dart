@@ -57,10 +57,12 @@ class _HomeScreenState extends State<HomeScreen> {
                   );
                 },
                 buildWhen: (preState, state) {
+                  //cancel animation refreshing when reload completed
                   if (preState.isRefreshing != state.isRefreshing &&
                       state.isRefreshing == false) {
                     _refreshController.refreshCompleted();
                   }
+                  //just render ui when reload completed
                   return preState.isLoading != state.isLoading ||
                       preState.isRefreshing != state.isRefreshing;
                 },

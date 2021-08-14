@@ -30,6 +30,7 @@ class _WeatherInfoViewState extends State<WeatherInfoView> {
             ),
           );
         }
+        // Show nodata when fetech data fail
         if (state.failure != null) {
           return Center(
             child: Text(
@@ -43,12 +44,14 @@ class _WeatherInfoViewState extends State<WeatherInfoView> {
           );
         }
         var _weather = state.weather;
+        // Show loading animation when loading data
         return state.weather == null
             ? Center(
                 child: CircularProgressIndicator(
                   color: Application.colors.darkBlue,
                 ),
               )
+            //Show weather's info
             : SizedBox.expand(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,

@@ -2,6 +2,7 @@ import 'package:weather_app/core/common/weather_state.dart';
 import 'package:weather_app/src/data/responses/weather_response.dart';
 import 'package:weather_app/src/domain/entities/weather_entity.dart';
 
+// build list WeatherResponse -> WeatherEntity
 class WeatherBuilder {
   static WeatherEntity buildEntity(List<WeatherResponse> weathers) {
     Map<String, int> _couts = Map<String, int>();

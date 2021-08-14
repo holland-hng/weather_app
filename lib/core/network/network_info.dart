@@ -1,6 +1,7 @@
 import 'package:connectivity/connectivity.dart';
 import 'package:injectable/injectable.dart';
 
+//check network available
 abstract class NetworkInfo {
   Future<bool> get isConnected;
 }

@@ -1,6 +1,7 @@
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:weather_app/src/domain/entities/weather_entity.dart';
 
+// init database
 class Database {
   static const hiveBoxName = 'WeatherApp';
   static init() async {

@@ -1,5 +1,7 @@
 import 'package:weather_app/src/presentation/bloc/home_bloc.dart';
 
+//There are events which user interact with HomeScreen
+
 enum HomeEventType {
   swipeWeek,
   selectDate,

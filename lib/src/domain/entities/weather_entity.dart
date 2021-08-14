@@ -51,7 +51,7 @@ class WeatherEntity extends Equatable {
     required this.visibility,
     required this.predictability,
   });
-
+  // format 14/08/2021 -> Sta Aug 14, 2021
   String get dateString {
     try {
       var _parsedDate = DateTime.parse(this.applicableDate);

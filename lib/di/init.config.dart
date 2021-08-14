@@ -9,7 +9,7 @@ import 'package:injectable/injectable.dart' as _i2;
 
 import '../core/network/network_info.dart' as _i5;
 import '../core/service/remote_service.dart' as _i6;
-import '../src/data/datasources/wather_remote_data_source.dart' as _i8;
+import '../src/data/datasources/weather_remote_data_source.dart' as _i8;
 import '../src/data/datasources/weather_local_data_source.dart' as _i7;
 import '../src/data/repositories_impl/home_repository_impl.dart' as _i9;
 import '../src/domain/repositories/home_repository.dart' as _i4;

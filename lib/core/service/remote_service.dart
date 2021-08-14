@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 
+//config dio for remote api
 @singleton
 class RemoteService {
   late Dio _dio;
