@@ -21,6 +21,7 @@ class UserSwipeWeekEvent extends HomeEvent {
 
 class UserSelectDateEvent extends HomeEvent {
   final int index;
+
   UserSelectDateEvent({
     required this.index,
   }) : super(HomeEventType.selectDate);

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'core/database/database.dart';
+import 'core/network/checking_network_service.dart';
 import 'di/init.dart';
 import 'src/presentation/bloc/home_bloc.dart';
 import 'src/presentation/root_controller.dart';
@@ -10,6 +11,7 @@ Future<void> main() async {
   await Database.init();
   configureDependencies();
   runApp(MyApp());
+  CheckingNetworkService.init();
 }
 
 class MyApp extends StatelessWidget {
@@ -27,9 +29,6 @@ class MyApp extends StatelessWidget {
           fontFamily: 'Quicksand',
           primaryColor: Colors.black,
           brightness: Brightness.dark,
-          canvasColor: Colors.transparent,
-          primaryColorBrightness: Brightness.dark,
-          accentColorBrightness: Brightness.dark,
         ),
         home: RootController(),
       ),

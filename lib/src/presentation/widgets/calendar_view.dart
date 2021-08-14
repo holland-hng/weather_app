@@ -52,10 +52,11 @@ class CalendartView extends StatelessWidget {
                       itemBuilder: (context, index) {
                         var _date = state.calendar![index];
                         return GestureDetector(
+                          key: ObjectKey(index),
                           onTap: () {
-                            context
-                                .read<HomeBloc>()
-                                .add(UserSelectDateEvent(index: index % 7));
+                            context.read<HomeBloc>().add(UserSelectDateEvent(
+                                  index: index % 7,
+                                ));
                           },
                           child: Container(
                             color: Colors.transparent,

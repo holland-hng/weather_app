@@ -32,6 +32,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   Stream<HomeState> _handleRefresh(RefreshDataEvent event) async* {
     yield state.copyWith(
+      weather: null,
       isRefreshing: true,
     );
     add(UserSelectDateEvent(index: state.index ?? 0));
@@ -40,7 +41,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   Stream<HomeState> _handleSwipeWeek(UserSwipeWeekEvent event) async* {
     yield state.copyWith(weekType: event.weekType);
-    add(UserSelectDateEvent(index: state.index ?? 0));
+    add(UserSelectDateEvent(
+      index: state.index ?? 0,
+    ));
     return;
   }
 
@@ -54,7 +57,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       _calendar.add(_date);
     }
     yield state.copyWith(calendar: _calendar);
-    add(UserSelectDateEvent(index: 0));
+    add(UserSelectDateEvent(
+      index: 0,
+    ));
     return;
   }
 

@@ -257,8 +257,11 @@ class MockHomeRepository extends _i1.Mock implements _i10.HomeRepository {
 
   @override
   _i5.Future<_i3.Result<_i11.Failure, _i2.WeatherEntity>> getWeather(
-          DateTime? date) =>
-      (super.noSuchMethod(Invocation.method(#getWeather, [date]),
+          DateTime? date,
+          {bool? isNeedLoadLocal}) =>
+      (super.noSuchMethod(
+              Invocation.method(
+                  #getWeather, [date], {#isNeedLoadLocal: isNeedLoadLocal}),
               returnValue:
                   Future<_i3.Result<_i11.Failure, _i2.WeatherEntity>>.value(
                       _FakeResult_1<_i11.Failure, _i2.WeatherEntity>()))

@@ -46,9 +46,11 @@ class _LinearIncreaseAnimationViewState
   Future<void> _excuteAnimation() async {
     for (int i = 0; i < number; i++) {
       await Future.delayed(Duration(milliseconds: _sectionTime), () {
-        setState(() {
-          _count++;
-        });
+        if (mounted) {
+          setState(() {
+            _count++;
+          });
+        }
       });
     }
   }
