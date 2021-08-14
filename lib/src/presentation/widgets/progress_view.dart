@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weather_app/core/common/linear_increase_animation_view.dart';
 import 'package:weather_app/core/tools/application_context.dart';
 import 'package:weather_app/src/presentation/bloc/home_bloc.dart';
 
@@ -99,14 +100,12 @@ class _ProgressViewState extends State<ProgressView> {
                           width: _widthContainer - 33 * 2,
                           height: _widthContainer - 33 * 2,
                           child: RotationTransition(
-                            turns: AlwaysStoppedAnimation(0.625),
-                            child: CircularProgressIndicator(
-                              color: Colors.white,
-                              strokeWidth: 8,
-                              value: 0.75 * _value / 100,
-                              backgroundColor: Colors.transparent,
-                            ),
-                          ),
+                              turns: AlwaysStoppedAnimation(0.625),
+                              child: LinearIncreaseAnimationView(
+                                key: UniqueKey(),
+                                number: _value,
+                                type: LinearIncreaseAnimationType.progress,
+                              )),
                         ),
                         SizedBox.expand(
                           child: Center(
@@ -130,8 +129,10 @@ class _ProgressViewState extends State<ProgressView> {
                     crossAxisAlignment: CrossAxisAlignment.end,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
-                        "$_value",
+                      LinearIncreaseAnimationView(
+                        key: UniqueKey(),
+                        type: LinearIncreaseAnimationType.text,
+                        number: _value,
                         style: TextStyle(
                           fontSize: 28,
                           fontWeight: FontWeight.bold,

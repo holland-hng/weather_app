@@ -11,6 +11,8 @@ class WeatherBuilder {
     double _totalTemp = 0;
     double _totalHumidity = 0;
     double _totalPredictability = 0;
+
+    //calculate totalTemp - totalHumidity - totalPredictability
     for (int i = 0; i < weathers.length; i++) {
       var _weather = weathers[i];
       _totalTemp += _weather.theTemp;

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weather_app/core/common/linear_increase_animation_view.dart';
+import 'package:weather_app/core/common/format_date.dart';
 import 'package:weather_app/core/common/weather_state.dart';
 import 'package:weather_app/core/tools/application_context.dart';
 import 'package:weather_app/src/presentation/bloc/home_bloc.dart';
@@ -74,8 +76,9 @@ class _WeatherInfoViewState extends State<WeatherInfoView> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
-                          "${_weather?.theTemp.floor() ?? 0.0}",
+                        LinearIncreaseAnimationView(
+                          number: _weather?.theTemp.floor() ?? 0,
+                          type: LinearIncreaseAnimationType.text,
                           style: TextStyle(
                             color: Application.colors.darkBlue,
                             fontSize: 70,
