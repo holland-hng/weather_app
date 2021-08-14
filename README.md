@@ -1,5 +1,8 @@
 # weather_app
 
+## VIDEO DEMO
+    https://youtu.be/Srd-Q6o6KOs
+
 ## SPEC
  
     ✅  Get weather data from API.

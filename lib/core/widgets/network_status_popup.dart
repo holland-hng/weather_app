@@ -9,6 +9,8 @@ class NetworkStatusPopup {
   static void show() {
     final snackBar = SnackBar(
       content: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Icon(
             Icons.error,

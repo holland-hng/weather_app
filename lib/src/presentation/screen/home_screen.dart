@@ -62,7 +62,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       state.isRefreshing == false) {
                     _refreshController.refreshCompleted();
                   }
-                  //just render ui when reload completed
+                  if (state.isRefreshing == true) {
+                    return false;
+                  }
+                  //just render ui when load data completed
                   return preState.isLoading != state.isLoading ||
                       preState.isRefreshing != state.isRefreshing;
                 },

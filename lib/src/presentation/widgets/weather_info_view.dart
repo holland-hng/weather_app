@@ -24,6 +24,7 @@ class _WeatherInfoViewState extends State<WeatherInfoView> {
         return !(state.isRefreshing ?? true);
       },
       builder: (context, state) {
+        // Show loading if different week display in screen
         if (state.weekType != weekType) {
           return Center(
             child: CircularProgressIndicator(
